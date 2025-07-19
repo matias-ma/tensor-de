@@ -75,6 +75,6 @@ where you need to have `~/data_dir/cryoEM/cryoem_test.joblib` and `~/work_dir` i
 ## Loading the model & results
 Then to load this model and get some visuals (e.g. 2D marginal) run this:
 ```
-python model_eval.py --dataset cryoEM --data-dir ~/data_dir --work-dir ~/work_dir --dim 4 --vis-dims 1,3
+python model_eval.py --dataset cryoEM --data-dir ~/data_dir --work-dir ~/work_dir --dim 4 --vis-dims 0,1
 ```
-If you just want the actual density function, load in the model (see `model_eval.py` for how to do this) and then run `p_est = batched_vmap(lambda x: model.apply(params, x, method=model.log_p), batch_sz)`.
+If you just want the actual density function, load in the model (see `model_eval.py` for how to do this) and then run `p_est = batched_vmap(lambda x: model.apply(params, x, method=model.p), batch_sz)`.

@@ -41,7 +41,7 @@ There are clearly many future improvements that can be made on this. A straightf
 For a more thorough explanation of this section please refer to the aforementioned repository. 
 To get started with this Python package, run the following:
 ``` 
-git clone git clone https://github.com/stat-ml/TTDE.git
+git clone https://github.com/stat-ml/TTDE.git
 cd TTDE
 pip install -e .
 ```

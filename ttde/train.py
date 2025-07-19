@@ -31,7 +31,7 @@ config.update("jax_enable_x64", True)
 @click.option('--train-steps', type=int, required=True, help='number of train steps')
 @click.option('--data-dir', type=Path, required=True, help='directory with MAF datasets')
 @click.option('--work-dir', type=Path, required=True, help='directory where to store checkpoints')
-@click.option('--loss-func', type=str, required=True, help='loss function, options LLLoss, ConvLLLoss, L2Loss')
+@click.option('--loss-func', type=str, default='LLLoss', help='loss function, options LLLoss, ConvLLLoss, L2Loss')
 @click.option('--num-mc', type=int, default=128, show_default=True, help='number of MC samples for ConvLLLoss')
 @click.option('--dim', type=int, default=4, show_default=True, help='dimension for cryo-EM data, int in [2,10]')
 

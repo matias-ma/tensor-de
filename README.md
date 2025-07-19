@@ -11,23 +11,23 @@ $$
 \mathcal{L}  = \|p-q\|_{L_2}^2 
 = \int q(\boldsymbol{x})^2 \, d \boldsymbol{x} - 2 \,\mathbb{E}_{\boldsymbol{x} \sim p} q(\boldsymbol{x}) + \text{const.},
 $$
-where $p$ is the underlying density and $q$ is the density we are trying to estimate, which written in terms of our basis looks like:
-```math
+where $p$ is the underlying density and $q$ is the density we are trying to estimate, which written in terms of our basis looks like:\
+$$
 q(\boldsymbol{x}) := \big\langle \alpha, \Phi(\boldsymbol{x}) \big\rangle \implies
 \int q(\boldsymbol{x})^2 \, d \boldsymbol{x} 
 = \int \big\langle \alpha, \Phi(\boldsymbol{x}) \big\rangle^2 \, d \boldsymbol{x}
 = \big \langle \alpha, \mathcal{D} \circ \alpha \big \rangle, \\
 \text{where } \big[ D^{(k)} \big]_{i,j} := \int \phi_i \big( x_k \big) \phi_j \big( x_k \big) \, dx_k \in \mathbb{R}^{m \times m}, \quad 
 \mathcal{D} = \bigotimes_{i=1}^d D^{(i)}
-```
+$$
 Here $\phi$ are our univariate basis functions, $m$ is the number of these basis functions, and $\alpha$ is our coefficient tensor.
 Because of the low TT-rank structure of these tensors we can calculate all of this in a time linear in dimension. 
 
-(ii) For cryo-EM data this loss function is the one that should be used. Building on the original NLL loss function, we define the convolved one to be:
+(ii) For cryo-EM data this loss function is the one that should be used. Building on the original NLL loss function, we define the convolved one to be:\
 $$
 \mathcal{L} = - \frac{1}{N} \sum_{i=1}^N \log \Big[ (U * q)\big({z^*}^{(i)} \big) \Big],
 $$
-where $U$ is the PDF of our noise and $\big \{ {z^*}^{(i)}  \in \mathbb{R}^d \big\}_{i=1}^N$ is the collection of our noisy data points, i.e. ${z^*}^{(i)} \overset{\mathrm{iid}}{\sim} (U*p)$. This convolution is approximated using Monte Carlo integration, i.e.:
+where $U$ is the PDF of our noise and $\big \{ {z^*}^{(i)}  \in \mathbb{R}^d \big \}_{i=1}^N$ is the collection of our noisy data points, i.e. ${z^*}^{(i)} \overset{\mathrm{iid}}{\sim} (U*p)$. This convolution is approximated using Monte Carlo integration, i.e.:\
 $$
 (U*q)(\boldsymbol{x}) = \mathbb{E}_{\varepsilon \sim U} \big[ q(\boldsymbol{x} - \varepsilon) \big]
 \approx \frac{1}{M} \sum_{k=1}^M q \big(\boldsymbol{x}-\varepsilon^{(k)} \big),

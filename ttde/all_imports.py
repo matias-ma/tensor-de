@@ -1,5 +1,4 @@
 from pathlib import Path
-
 import numpy as np
 from jax import numpy as jnp
 import flax

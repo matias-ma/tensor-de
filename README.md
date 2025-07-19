@@ -66,11 +66,15 @@ export WANDB_MODE=offline
 # Running it
 We will show how to run this code on some example cryo-EM data, which will highlight some of the key changes we have made to the existing code. The example cryo-EM dataset we use can be found [here](https://www.dropbox.com/scl/fi/simc0vv9h9bhexbbhdefc/cryoem_test.joblib?rlkey=8rxva5boicaq08ukp3zcxlqz9&st=bxzi1s67&dl=0). Note this algorithm is very computationally expensive (we ran it on a 80Gb A100 GPU). 
 
+## Training the model
 ```
 python -m ttde.train --dataset cryoem --q 2 --m 16 --rank 16 --n-comps 32 --em-steps 10 --noise 0.01 --batch-sz 512 --train-noise 0.01 --lr 0.001 --train-steps 100 --data-dir ~/data_dir --work-dir ~/work_dir --dim 4 --loss-func ConvLLLoss --num-mc 128
 ```
 where you need to have `~/data_dir/cryoEM/cryoem_test.joblib` and `~/work_dir` is where the model will be exported.
 
-## Training the model
-
 ## Loading the model & results
+Then to load this model and get some visuals (e.g. 2D marginal) run this:
+```
+python model_eval.py --dataset cryoEM --data-dir ~/data_dir --work-dir ~/work_dir --dim 4 --vis-dims 1,3
+```
+If you just want the actual density function, load in the model (see `model_eval.py` for how to do this) and then run `p_est = batched_vmap(lambda x: model.apply(params, x, method=model.log_p), batch_sz)`.

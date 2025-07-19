@@ -16,7 +16,9 @@ $$
 q(\boldsymbol{x}) := \big\langle \alpha, \Phi(\boldsymbol{x}) \big\rangle \implies
 \int q(\boldsymbol{x})^2 \, d \boldsymbol{x} 
 = \int \big\langle \alpha, \Phi(\boldsymbol{x}) \big\rangle^2 \, d \boldsymbol{x}
-= \big \langle \alpha, \mathcal{D} \circ \alpha \big \rangle, \\
+= \big \langle \alpha, \mathcal{D} \circ \alpha \big \rangle,
+$$ \
+$$
 \text{where } \big[ D^{(k)} \big]_{i,j} := \int \phi_i \big( x_k \big) \phi_j \big( x_k \big) \, dx_k \in \mathbb{R}^{m \times m}, \quad 
 \mathcal{D} = \bigotimes_{i=1}^d D^{(i)}
 $$

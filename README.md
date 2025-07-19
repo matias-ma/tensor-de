@@ -7,9 +7,9 @@ In this, we build on the tensor train density estimation (TT-DE) code found [her
 Aside from adding a few new datasets and providing code to show how to use the model once it is fitted by TT-DE, we have also provided two new loss functions: (i) the $L_2$-error and (ii) the convolved negative log likelihood (NLL).
 
 (i) In Novikov et al., they mention using this error, but they ultimately decided against it in their code. Making use of the TT form of our density estimator we can use this equation: \
-$$
+```math
 \mathcal{L}  = \|p-q\|_{\mathrm{L}_2}^2 = \int q(\boldsymbol{x})^2 \, d \boldsymbol{x} - 2 \, \mathbb{E}_{\boldsymbol{x} \sim p} q(\boldsymbol{x}) + \text{const.},
-$$
+```
 where $p$ is the underlying density and $q$ is the density we are trying to estimate, which written in terms of our basis looks like:\
 $$
 q(\boldsymbol{x}) := \big\langle \alpha, \Phi(\boldsymbol{x}) \big\rangle \implies

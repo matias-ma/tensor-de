@@ -47,8 +47,29 @@ pip install -e .
 ```
 Then add/replace the files from this repository into that `TTDE` directory.
 
+## Requirements 
+This code is meant to be run on a GPU but can run on a CPU (it will be very slow).
+
+Be sure to have run this in your conda environment:
+```
+pip install jax==0.4.8
+pip install jaxlib==0.4.7+cuda11.cudnn86 \
+  -f https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
+pip install nvidia-cudnn-cu11==8.6.0.163
+```
+
+If working on a cluster that does not have internet access, also be sure to run:
+```
+export WANDB_MODE=offline
+```
+
 # Running it
-We will show how to run this code on some example cryo-EM data, which will highlight some of the key changes we have made to the existing code. The example cryo-EM dataset we use can be found [here](https://www.dropbox.com/scl/fi/simc0vv9h9bhexbbhdefc/cryoem_test.joblib?rlkey=8rxva5boicaq08ukp3zcxlqz9&st=bxzi1s67&dl=0).
+We will show how to run this code on some example cryo-EM data, which will highlight some of the key changes we have made to the existing code. The example cryo-EM dataset we use can be found [here](https://www.dropbox.com/scl/fi/simc0vv9h9bhexbbhdefc/cryoem_test.joblib?rlkey=8rxva5boicaq08ukp3zcxlqz9&st=bxzi1s67&dl=0). Note this algorithm is very computationally expensive (we ran it on a 80Gb A100 GPU). 
+
+```
+python -m ttde.train --dataset cryoem --q 2 --m 16 --rank 16 --n-comps 32 --em-steps 10 --noise 0.01 --batch-sz 512 --train-noise 0.01 --lr 0.001 --train-steps 100 --data-dir ~/data_dir --work-dir ~/work_dir --dim 4 --loss-func ConvLLLoss --num-mc 128
+```
+where you need to have `~/data_dir/cryoEM/cryoem_test.joblib` and `~/work_dir` is where the model will be exported.
 
 ## Training the model
 

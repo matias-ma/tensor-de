@@ -70,7 +70,7 @@ We will show how to run this code on some example cryo-EM data, which will highl
 ```
 python -m ttde.train --dataset cryoem --q 2 --m 16 --rank 16 --n-comps 32 --em-steps 10 --noise 0.01 --batch-sz 512 --train-noise 0.01 --lr 0.001 --train-steps 100 --data-dir ~/data_dir --work-dir ~/work_dir --dim 4 --loss-func ConvLLLoss --num-mc 128
 ```
-where you need to have `~/data_dir/cryoEM/cryoem_test.joblib` and `~/work_dir` is where the model will be exported.
+where you need to have `~/data_dir/cryoEM/cryoem_test.joblib` and `~/work_dir` is where the model will be exported. I have tested a number of different parameters and these values for `n_comps, em-steps, noise, train-noise, and lr` seem to be the best regardless of the dataset. The other parameters are more dataset dependent. To get a full description of these parameters run `python -m ttde.train --help`.
 
 ## Loading the model & results
 Then to load this model and get some visuals (e.g. 2D marginal) run this:
@@ -78,3 +78,6 @@ Then to load this model and get some visuals (e.g. 2D marginal) run this:
 python model_eval.py --dataset cryoEM --data-dir ~/data_dir --work-dir ~/work_dir --dim 4 --vis-dims 0,1
 ```
 If you just want the actual density function, load in the model (see `model_eval.py` for how to do this) and then run `p_est = batched_vmap(lambda x: model.apply(params, x, method=model.p), batch_sz)`.
+
+# Contact
+If you have any questions or comments feel free to reach out to me at mati@princeton.edu.
